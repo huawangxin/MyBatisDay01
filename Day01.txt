@@ -1,0 +1,49 @@
+Spring JDBC
+ 1 导入包
+   1) 数据库的连接管理, 一般都采用连接池
+      A DBCP 3个包
+      B c3p0 2包
+     都是实现了接口 javax.sql.DataSource
+     这个接口中最重要的方法 getConnection()
+     也称为数据库连接池(也称为数据源)
+     
+     DataSource 是Java提供的数据库连接标注
+   DBCP 和 C3P0 提供了DataSource的实现, 实现了
+   数据库连接的 对象池管理. 提高了连续性和避免
+   连接过多, 保护数据库.
+   
+   2) 导入数据库驱动 jar
+   3) 导入 Spring jdbc 包 Spring tx 包
+ 2  配置 Spring 
+   1) 配置数据库连接池(数据源 DataSource)
+     就是利用Spring 创建 DataSource 子类Bean实例
+     必须依赖 数据库连接参数 和 连接池参数
+     
+     进行单元测试
+    
+   2) 配置JdbcTemplate (Spring)
+     配置为Bean 依赖于 DataSource 实例
+     
+     测试 jdbcTemplate 
+      
+ 3 开发Dao 实现对象的CRUD
+   Dao 接口约定了对象的CRUD 操作
+   
+   类实现 Dao, 依赖于 JdbcTemplate
+   利用Spring注入 JdbcTemplate
+   
+   
+标准标签库 JSTL
+  Java EE5 内嵌支持 JSTL:使用Java EE5 不要导入
+  JSTL的jar文件了 
+  
+  Java EE 1.4(Servlet 2.4) 使用 JSTL 必须导入 
+  JSTL 的jar
+  
+  Tomcat的某些版本 Java EE 5的支持有问题 就会出现
+  JSTL 解析出现故障.
+  
+ Spring 管理对象: 
+  被Spring 管理的对象: Java Bean Component Object 
+  java bean 组件对象 简称: java bean , java 对象 
+  Bean组件, Bean对象, 组件

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 每个实例和实体的访问接口对应一个映射(mapper)文件 -->
+<!-- namespace 的值是实体访问接口的类名, 不能错呀! -->
+<mapper namespace="com.huawangxin.entity.DeptMapper">
+	<!-- 在Dept.xml中添加每个Mapping方法的sql语句 -->
+	<!-- add对应DeptMapping接口中的方法名add -->
+	<!-- paramaterType对应add方法的参数类型 -->
+	<!-- sql语句中#{deptno}对于参数Dept对象的Bean属性(也就是getDeptno()方法的值)-->
+	<insert id="add" keyProperty="deptno" parameterType="com.huawangxin.entity.Dept">
+		<!-- 在执行插入语句之前执行seletkey，把返回的int数据作为deptno属性的值 -->
+		<selectKey keyProperty="deptno" resultType="int" order="BEFORE">
+		select seq_t_dept.nextval from dual
+		</selectKey>
+	insert into t_dept_wangxin (deptno,dname,loc)
+	values(#{deptno},#{dname},#{loc})
+	</insert>
+	<!-- 运行期间，就会将参数的属性替换到SQL语句中执行-->
+	<delete id="delete" parameterType="com.huawangxin.entity.Dept">
+	delete from t_dept_wangxin where deptno=#{dentno}
+	</delete>
+	<select id="findById" resultType="com.huawangxin.entity.Dept" 
+		parameterType="java.lang.Integer">
+		select deptno,dname,loc 
+		from t_dept_wangxin 
+		where deptno=#{deptno}
+	</select>
+	
+	<update id="update" parameterType="com.huawangxin.entity.Dept">
+		update t_dept_wangxin 
+		set dname=#{dname},loc=#{loc} 
+		where deptno=#{deptno}
+	</update>
+	
+	<select id="findAll" resultType="com.huawangxin.entity.Dept">
+		select deptno,dname,loc from t_dept_wangxin
+	</select>
+	
+	<select id="findDeptInfo" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select dname,loc from t_dept_wangxin
+		where loc=#{loc} order by deptno
+	</select>
+</mapper>

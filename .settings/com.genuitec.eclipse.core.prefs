@@ -1,0 +1,4 @@
+#Tue Sep 02 11:33:14 CST 2014
+eclipse.preferences.version=1
+validator.Checked=src/com/huawangxin/entity/Dept.xml,src/SqlMapConfig.xml
+validator.Unchecked=
